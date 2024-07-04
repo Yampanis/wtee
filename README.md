@@ -72,6 +72,15 @@ exec "$SHELL"
 ```
 pyenv install 3.6.5
 ```
+if you got trouble in installing python 3.6.5, please refer this article.
+
+https://stackoverflow.com/questions/3905615/zlib-module-missing
+
+```
+sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libreadline-dev libbz2-dev libsqlite3-dev wget curl llvm libncurses5-dev
+```
+
+
 ```
 pyenv versions
 ```
@@ -100,6 +109,12 @@ Build a project
 
 ```
 python setup.py build
+```
+Before creating executable, install pex
+
+```
+sudo apt-get update -y
+sudo apt-get install -y pex
 ```
 
 Create an executable using make
