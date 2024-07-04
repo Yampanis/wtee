@@ -77,10 +77,10 @@ pyenv versions
 ```
 There should be 3.6.5 in python.
 
-###### Set local python version to 3.6.5
+###### Set python version to 3.6.5
 
 ```
-pyenv local 3.6.5
+pyenv global 3.6.5
 ```
 
 ###### install dependencies for the wtee project
