@@ -96,7 +96,7 @@ pyenv global 3.6.5
 
 Go to the root directory of source project.
 ```
-cd source_code_location 
+git clone https://github.com/3lo1i/wtee.git
 ```
 
 Install dependencies
