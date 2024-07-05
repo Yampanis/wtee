@@ -20,7 +20,7 @@ kw = {
     'name':             'wtee',
     'version':          '1.2.0',
     'description':      'read from stdin, write to stdout and serve on a webpage',
-    'long_description': open('README.rst').read(),
+    'long_description': open('README.md').read(),
     'author':           'Georgi Valkov',
     'author_email':     'georgi.t.valkov@gmail.com',
     'license':          'Revised BSD License',
