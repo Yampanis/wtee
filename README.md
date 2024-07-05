@@ -103,7 +103,7 @@ ce ./wtee
 Install dependencies
 
 ```
-pip install -r requirement-dev.txt
+pip install -r requirements-dev.txt
 ```
 
 Build a project
