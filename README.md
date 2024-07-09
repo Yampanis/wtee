@@ -67,12 +67,12 @@ exec "$SHELL"
 
 #### Install Python build dependencies
 
-###### Install python 3.6.5 using pyenv
+###### Install python 3.5 using pyenv
 
 ```
-pyenv install 3.6.5
+pyenv install 3.5
 ```
-if you got trouble in installing python 3.6.5, please refer this article.
+if you got trouble in installing python 3.5, please refer this article.
 
 https://stackoverflow.com/questions/3905615/zlib-module-missing
 
@@ -84,12 +84,12 @@ sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libreadline-d
 ```
 pyenv versions
 ```
-There should be 3.6.5 in python.
+There should be 3.5 in python.
 
-###### Set python version to 3.6.5
+###### Set python version to 3.5
 
 ```
-pyenv global 3.6.5
+pyenv global 3.5
 ```
 
 ###### install dependencies for the wtee project
@@ -103,7 +103,7 @@ ce ./wtee
 Install dependencies
 
 ```
-pip install -r requirements-dev.txt
+python setup.py install
 ```
 
 Build a project
