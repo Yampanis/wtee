@@ -77,6 +77,7 @@ class LogView {
     }
 
     createSpans(message: string[] | any) {
+        console.log({message})
         let spans: HTMLElement[] = [];
 
         // Just a list of lines that we write to the logview.

@@ -94,7 +94,7 @@ def setup_config(opts):
         'addr': addr,
         'input-encoding': opts.__dict__.get('input_encoding', ''),
         'relative-root': opts.__dict__.get('relative_root', ''),
-        'debug': opts.__dict__.get('debug', False),
+        'debug': opts.__dict__.get('debug', True),
         'wrap-lines': opts.__dict__.get('wrap-lines', True),
     }
     return config

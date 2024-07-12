@@ -86,7 +86,7 @@ class StdioHandler:
                 if self.last_line:
                     lines[0] = ''.join(self.last_line) + lines[0]
                     self.last_line = []
-
+        
         self.broadcast(self.clients, escape.json_encode(lines))
         self.stdout_buffer.write(data)
         self.stdout_buffer.flush()

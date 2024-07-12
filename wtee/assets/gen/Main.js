@@ -92,6 +92,7 @@ var WteeServer = (function () {
         };
         this.dataReceived = function (message) {
             var data = JSON.parse(message.data);
+            console.log({ data: data });
             _this.onMessage.trigger(data);
         };
         this.sendMessage = function (message, retry) {
@@ -188,6 +189,7 @@ var Parser = (function () {
         }
     };
     Parser.prototype.parseLine = function (line) {
+        console.log({ line: line });
         line = line.replace(/\n$/, '');
         var chunks = line.split(this.escapeCodeSplitRegExp);
         var parsedSpans = [];
@@ -197,7 +199,6 @@ var Parser = (function () {
                 continue;
             }
             var matches = substring.match(this.escapeCodeCaptureRegExp);
-            console.log(matches);
             if (matches) {
                 var args = matches[1];
                 var command = matches[2];
@@ -227,6 +228,7 @@ var Parser = (function () {
                 parsedSpans.push(Utils.createSpan(Utils.escapeHtml(substring), classes));
             }
         }
+        this.resetAllAttributes();
         return parsedSpans;
     };
     return Parser;
@@ -286,6 +288,7 @@ var LogView = (function () {
         this.lastSpan.className = this.lastSpanClasses + ' log-entry-current';
     };
     LogView.prototype.createSpans = function (message) {
+        console.log({ message: message });
         var spans = [];
         // Just a list of lines that we write to the logview.
         if (Array.isArray(message)) {

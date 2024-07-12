@@ -37,6 +37,7 @@ class Parser {
   }
 
   parseLine(line: string) {
+    console.log({line})
     line = line.replace(/\n$/, '');
     let chunks: string[] = line.split(this.escapeCodeSplitRegExp);
     let parsedSpans: HTMLElement[] = [];
@@ -45,7 +46,6 @@ class Parser {
         continue;
       }
       let matches: string[] = substring.match(this.escapeCodeCaptureRegExp);
-      console.log(matches);
       if (matches) {
         let args: string = matches[1];
         let command: string = matches[2];
@@ -73,6 +73,7 @@ class Parser {
         parsedSpans.push(Utils.createSpan(Utils.escapeHtml(substring), classes));
       }
     }
+    this.resetAllAttributes();
     return parsedSpans;
   }
 }

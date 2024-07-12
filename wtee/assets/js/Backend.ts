@@ -46,6 +46,7 @@ class WteeServer {
 
     dataReceived = (message: SJSMessageEvent) => {
         var data = JSON.parse(message.data);
+        console.log({data})
         this.onMessage.trigger(data);
     }
 
