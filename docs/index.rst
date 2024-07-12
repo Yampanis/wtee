@@ -70,7 +70,7 @@ Wtee's server-side functionality is summarized in its help message:
     --no-wrap-lines           initial line-wrapping state (default: true)
 
   Example command-line usage:
-    tail -f /var/log/debug | wtee -b localhost:8080 | nl
+    tail -f /var/log/syslog | wtee -b localhost:8080 | nl
 
 
 Reverse proxy configuration

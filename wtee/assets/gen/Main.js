@@ -45,7 +45,7 @@ var Utils;
         return span;
     }
     Utils.createSpan = createSpan;
-    var Signal = /** @class */ (function () {
+    var Signal = (function () {
         function Signal() {
             this.listeners = [];
         }
@@ -64,112 +64,7 @@ var Utils;
     }());
     Utils.Signal = Signal;
 })(Utils || (Utils = {}));
-var Parser = /** @class */ (function () {
-    function Parser() {
-        this.escapeCodeSplitRegExp = /(\x1b\[[0-9;]*[a-zA-Z])/g;
-        this.escapeCodeCaptureRegExp = /\x1b\[([0-9;]*)([a-zA-Z])/;
-        this.foreground = 0;
-        this.background = 0;
-        this.colorAttribute = 0;
-        this.textAttributes = [];
-    }
-    Parser.prototype.resetAllAttributes = function () {
-        this.foreground = 0;
-        this.background = 0;
-        this.colorAttribute = 0;
-        this.textAttributes.length = 0;
-    };
-    Parser.prototype.setAttribute = function (arg) {
-        if (arg === 0) { // 0 - all attributes off
-            this.resetAllAttributes();
-        }
-        else if (arg <= 2) { // 1, 2 - bright/faint text
-            this.colorAttribute = arg;
-        }
-        else if (arg <= 9) { // 3-9 - text style: italic, underline, blinking, reverse, hide and cross-out
-            if (this.textAttributes.indexOf(arg) === -1) {
-                this.textAttributes.push(arg);
-            }
-        }
-        else if (arg >= 30 && arg <= 37) { // 30-37 - foreground colors
-            this.foreground = arg;
-        }
-        else if (arg >= 40 && arg <= 47) { // 40-47 - background colors
-            this.background = arg;
-        }
-    };
-    Parser.prototype.parseLine = function (line) {
-        line = line.replace(/\n$/, '');
-        var chunks = line.split(this.escapeCodeSplitRegExp);
-        var parsedSpans = [];
-        for (var _i = 0, chunks_1 = chunks; _i < chunks_1.length; _i++) {
-            var substring = chunks_1[_i];
-            if (!substring.length) {
-                continue;
-            }
-            var matches = substring.match(this.escapeCodeCaptureRegExp);
-            console.log(matches);
-            if (matches) {
-                var args = matches[1];
-                var command = matches[2];
-                if (command == 'm') {
-                    var attrs = args.split(';');
-                    for (var _a = 0, attrs_1 = attrs; _a < attrs_1.length; _a++) {
-                        var a = attrs_1[_a];
-                        this.setAttribute(parseInt(a) || 0);
-                    }
-                }
-                parsedSpans.push(Utils.createSpan(Utils.escapeHtml(substring), 'esc'));
-            }
-            else {
-                var escCodes = this.textAttributes.slice(); // copy array
-                if (this.foreground) {
-                    escCodes.push(this.foreground);
-                }
-                if (this.background) {
-                    escCodes.push(this.background);
-                }
-                if (this.colorAttribute) {
-                    escCodes.push(this.colorAttribute);
-                }
-                var classes = escCodes.map(function (code) {
-                    return 'esc-' + code;
-                }).join(' ');
-                parsedSpans.push(Utils.createSpan(Utils.escapeHtml(substring), classes));
-            }
-        }
-        return parsedSpans;
-    };
-    return Parser;
-}());
-/// <reference path="Utils.ts" />
-var Settings;
-(function (Settings_1) {
-    var Settings = /** @class */ (function () {
-        function Settings(settings) {
-            this.settings = settings;
-            this.signals = {};
-            var keys = Object.keys(this.settings);
-            for (var i = 0; i < keys.length; i++) {
-                this.signals[keys[i]] = new Utils.Signal();
-            }
-        }
-        Settings.prototype.onChange = function (name, callback) {
-            this.signals[name].addCallback(callback);
-        };
-        Settings.prototype.set = function (key, value) {
-            console.log('settings key "' + key + '" set to "' + value + '"');
-            this.settings[key] = value;
-            this.signals[key].trigger(value);
-        };
-        Settings.prototype.get = function (key) {
-            return this.settings[key];
-        };
-        return Settings;
-    }());
-    Settings_1.Settings = Settings;
-})(Settings || (Settings = {}));
-var WteeServer = /** @class */ (function () {
+var WteeServer = (function () {
     function WteeServer(apiURL, connectionRetries) {
         var _this = this;
         this.apiURL = apiURL;
@@ -231,7 +126,112 @@ var WteeServer = /** @class */ (function () {
     };
     return WteeServer;
 }());
-var LogView = /** @class */ (function () {
+/// <reference path="Utils.ts" />
+var Settings;
+(function (Settings_1) {
+    var Settings = (function () {
+        function Settings(settings) {
+            this.settings = settings;
+            this.signals = {};
+            var keys = Object.keys(this.settings);
+            for (var i = 0; i < keys.length; i++) {
+                this.signals[keys[i]] = new Utils.Signal();
+            }
+        }
+        Settings.prototype.onChange = function (name, callback) {
+            this.signals[name].addCallback(callback);
+        };
+        Settings.prototype.set = function (key, value) {
+            console.log('settings key "' + key + '" set to "' + value + '"');
+            this.settings[key] = value;
+            this.signals[key].trigger(value);
+        };
+        Settings.prototype.get = function (key) {
+            return this.settings[key];
+        };
+        return Settings;
+    }());
+    Settings_1.Settings = Settings;
+})(Settings || (Settings = {}));
+var Parser = (function () {
+    function Parser() {
+        this.escapeCodeSplitRegExp = /(\x1b\[[0-9;]*[a-zA-Z])/g;
+        this.escapeCodeCaptureRegExp = /\x1b\[([0-9;]*)([a-zA-Z])/;
+        this.foreground = 0;
+        this.background = 0;
+        this.colorAttribute = 0;
+        this.textAttributes = [];
+    }
+    Parser.prototype.resetAllAttributes = function () {
+        this.foreground = 0;
+        this.background = 0;
+        this.colorAttribute = 0;
+        this.textAttributes.length = 0;
+    };
+    Parser.prototype.setAttribute = function (arg) {
+        if (arg === 0) {
+            this.resetAllAttributes();
+        }
+        else if (arg <= 2) {
+            this.colorAttribute = arg;
+        }
+        else if (arg <= 9) {
+            if (this.textAttributes.indexOf(arg) === -1) {
+                this.textAttributes.push(arg);
+            }
+        }
+        else if (arg >= 30 && arg <= 37) {
+            this.foreground = arg;
+        }
+        else if (arg >= 40 && arg <= 47) {
+            this.background = arg;
+        }
+    };
+    Parser.prototype.parseLine = function (line) {
+        line = line.replace(/\n$/, '');
+        var chunks = line.split(this.escapeCodeSplitRegExp);
+        var parsedSpans = [];
+        for (var _i = 0, chunks_1 = chunks; _i < chunks_1.length; _i++) {
+            var substring = chunks_1[_i];
+            if (!substring.length) {
+                continue;
+            }
+            var matches = substring.match(this.escapeCodeCaptureRegExp);
+            console.log(matches);
+            if (matches) {
+                var args = matches[1];
+                var command = matches[2];
+                if (command == 'm') {
+                    var attrs = args.split(';');
+                    for (var _a = 0, attrs_1 = attrs; _a < attrs_1.length; _a++) {
+                        var a = attrs_1[_a];
+                        this.setAttribute(parseInt(a) || 0);
+                    }
+                }
+                parsedSpans.push(Utils.createSpan(Utils.escapeHtml(substring), 'esc'));
+            }
+            else {
+                var escCodes = this.textAttributes.slice(); // copy array
+                if (this.foreground) {
+                    escCodes.push(this.foreground);
+                }
+                if (this.background) {
+                    escCodes.push(this.background);
+                }
+                if (this.colorAttribute) {
+                    escCodes.push(this.colorAttribute);
+                }
+                var classes = escCodes.map(function (code) {
+                    return 'esc-' + code;
+                }).join(' ');
+                parsedSpans.push(Utils.createSpan(Utils.escapeHtml(substring), classes));
+            }
+        }
+        return parsedSpans;
+    };
+    return Parser;
+}());
+var LogView = (function () {
     function LogView(backend, settings, container, logEntryClass, logNoticeClass) {
         this.backend = backend;
         this.settings = settings;
@@ -399,6 +399,7 @@ backend.onDisconnect.addCallback(function () {
 });
 backend.connect();
 backend.onMessage.addCallback(function (message) {
+    console.log({ message: message });
     logview.createSpans(message);
 });
 //-----------------------------------------------------------------------------

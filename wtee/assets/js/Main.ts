@@ -77,6 +77,7 @@ backend.onDisconnect.addCallback(function() {
 backend.connect();
 
 backend.onMessage.addCallback(function(message) {
+    console.log({message})
     logview.createSpans(message)
 });
 

@@ -57,7 +57,7 @@ def parseopts(args=None):
 
     epilog = '''
     Example command-line usage:
-      tail -f /var/log/debug | wtee -b localhost:8080 | nl
+      tail -f /var/log/syslog | wtee -b localhost:8080 | nl
     '''
 
     parser = argparse.ArgumentParser(
