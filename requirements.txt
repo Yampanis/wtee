@@ -1,4 +1,5 @@
 alabaster==0.7.13
+altgraph==0.17.4
 Babel==2.11.0
 bump2version==1.0.1
 bumpversion==0.6.0
@@ -16,6 +17,8 @@ MarkupSafe==2.0.1
 packaging==21.3
 pex==2.7.0
 Pygments==2.14.0
+pyinstaller==4.10
+pyinstaller-hooks-contrib==2022.0
 pyparsing==3.0.7
 pyScss==1.4.0
 pytz==2024.1
@@ -36,5 +39,4 @@ tornado==4.5.3
 typing-extensions==4.1.1
 urllib3==1.26.19
 webassets==2.0
--e git+https://github.com/3lo1i/wtee.git@cc062ba8dc386d40f2132c6194170f14ed32d957#egg=wtee
 zipp==3.6.0
