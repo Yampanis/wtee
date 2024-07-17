@@ -96,7 +96,7 @@ pyenv global 3.5
 
 Go to the root directory of source project.
 ```
-git clone https://github.com/3lo1i/wtee.git
+git clone https://github.com/yampanis/wtee.git
 ce ./wtee
 ```
 
