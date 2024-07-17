@@ -124,3 +124,14 @@ tail -f ./screenlog.1 | wtee | nl
 ```
 You can see that a server is running on port 8080 by default.
 Visit http://localhost:8080 to check if server is running.
+
+
+Build a standalone executable
+
+```
+pex . -r requirements.txt -e wtee.main:main -o wtee.pex
+```
+
+```
+tail -f ./screenlog.1 | ./wtee.pex | nl
+```
