@@ -100,34 +100,27 @@ git clone https://github.com/3lo1i/wtee.git
 ce ./wtee
 ```
 
-Install dependencies
+Create a virtual environment
 
 ```
-python setup.py install
+python -m venv env
 ```
 
-Build a project
+Activate the Virtual Environment
 
 ```
-python setup.py build
+source env/bin/activate
 ```
-Before creating executable, install pex
+Install wtee from source
 
 ```
-sudo apt-get update -y
-sudo apt-get install -y pex
+pip install -e .
 ```
 
-Create an executable using make
+Test wtee
 
 ```
-make
-```
-
-Run wtee
-
-```
-./build/wtee
+tail -f ./screenlog.1 | wtee | nl
 ```
 You can see that a server is running on port 8080 by default.
 Visit http://localhost:8080 to check if server is running.
