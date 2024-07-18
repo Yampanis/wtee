@@ -97,7 +97,7 @@ pyenv global 3.6.5
 Go to the root directory of source project.
 ```
 git clone https://github.com/yampanis/wtee.git
-ce ./wtee
+cd ./wtee
 ```
 
 Create a virtual environment
