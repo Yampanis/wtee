@@ -92,7 +92,7 @@ There should be 3.6.5 in python.
 pyenv global 3.6.5
 ```
 
-###### install dependencies for the wtee project
+###### install dependencies for the wtee project (only if compiling from source, not needed to run executable)
 
 Go to the root directory of source project.
 ```
@@ -100,7 +100,7 @@ git clone https://github.com/yampanis/wtee.git
 cd ./wtee
 ```
 
-Create a virtual environment
+Create a virtual environment ()
 
 ```
 python -m venv env
@@ -132,6 +132,8 @@ Build a standalone executable
 pex . -r requirements.txt -e wtee.main:main -o wtee.pex
 ```
 
+```
+###### run wtee executalble
 ```
 tail -f ./screenlog.1 | ./wtee.pex -b localhost:8000 | nl
 ```
