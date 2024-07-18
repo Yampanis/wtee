@@ -133,5 +133,5 @@ pex . -r requirements.txt -e wtee.main:main -o wtee.pex
 ```
 
 ```
-tail -f ./screenlog.1 | ./wtee.pex | nl
+tail -f ./screenlog.1 | ./wtee.pex -b localhost:8000 | nl
 ```
